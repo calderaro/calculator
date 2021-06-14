@@ -5,6 +5,7 @@ export type CalculatorButtonTheme = "lightGray" | "darkGray" | "orange";
 
 export interface CalculatorButtonProps {
   theme?: CalculatorButtonTheme;
+  onClick?: () => void;
 }
 
 const backgroundColors: Record<CalculatorButtonTheme, Record<string, string>> =
@@ -17,13 +18,16 @@ const backgroundColors: Record<CalculatorButtonTheme, Record<string, string>> =
 const CalculatorButton: React.FC<CalculatorButtonProps> = ({
   children,
   theme,
+  onClick,
 }) => {
   return (
     <div
       className={styles.calculatorButton}
       style={backgroundColors[theme || "orange"]}
     >
-      <span>{children}</span>
+      <button onClick={onClick}>
+        <span>{children}</span>
+      </button>
     </div>
   );
 };
