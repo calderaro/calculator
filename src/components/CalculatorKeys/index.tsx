@@ -2,7 +2,7 @@ import React from "react";
 import { faDivide } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CalculatorButton from "../CalculatorButton";
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 interface Props {
   onKeyDown?: (event: { type: string; value: string }) => void;
