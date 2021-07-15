@@ -56,6 +56,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:innomius/ravent-ui-kit-web.git"
+    "url": "git@github.com:calderaro/calculator.git"
   }
 }
