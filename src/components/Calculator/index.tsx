@@ -21,6 +21,8 @@ export const Calculator: React.FC = () => {
     justOperated
   });
 
+  //console.log(Number(firstValue as string), Number(secondValue as string));
+
   return (
     <div className={styles.calculator}>
       <div className={styles.value}>
@@ -77,8 +79,33 @@ export const Calculator: React.FC = () => {
             setFirstValue('0');
             setSecondValue('0');
             setOperation('');
+            setJustChanged(false);
+            setJustOperated(false);
             return;
           }
+
+          if (e.value === '%') {
+            const val = String(Number(firstValue as string) / 100);
+            setDisplayValue(val);
+            setFirstValue(val);
+            //setSecondValue('0');
+            //setOperation('');
+            return;
+          }
+
+          if (e.value === 'invert') {
+            const val = String(Number(firstValue as string) * -1);
+            setDisplayValue(val);
+            setFirstValue(val);
+            //setSecondValue('0');
+            //setOperation('');
+            return;
+          }
+
+          // if (e.value === '=' && !hasOperation) {
+          //   setJustOperated(true);
+          //   return;
+          // }
 
           if (e.value === '=' && hasOperation) {
             let nval = '0';
@@ -100,24 +127,20 @@ export const Calculator: React.FC = () => {
             return;
           }
 
-          if (e.type === 'operator') {
+          if (e.type === 'operator' && e.value !== '=') {
             if (justOperated) {
-              console.log('here 1');
-
               setOperation(e.value);
               setJustOperated(false);
               setJustChanged(true);
               return;
             }
+
             if (!hasOperation) {
-              console.log('here 2');
               setOperation(e.value);
               setSecondValue(firstValue);
               setJustChanged(true);
               return;
             }
-
-            console.log('here 3');
 
             let nval = '0';
 
@@ -132,9 +155,9 @@ export const Calculator: React.FC = () => {
             }
 
             setOperation(e.value);
+            setDisplayValue(nval);
             setFirstValue(nval);
             //setSecondValue(firstValue);
-            setDisplayValue(nval);
             setJustChanged(true);
             return;
           }
