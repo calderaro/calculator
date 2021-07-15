@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - fix/*
+      - feature/*
+
+env:
+  #NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+  MAJOR_VERSION: 1
+  MINOR_VERSION: 0
+  MICRO_VERSION_BASE: 0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: build and push
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@calderaro'
+      - run: yarn install
+      - run: yarn run build
+      - run: yarn publish --verbose --new-version $(echo "${MAJOR_VERSION:-0}.${MINOR_VERSION:-0}.$((GITHUB_RUN_NUMBER - MICRO_VERSION_BASE))") --no-git-tag-version
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
