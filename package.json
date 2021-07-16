@@ -1,5 +1,5 @@
 {
-  "name": "@pixframeStudios/calculator",
+  "name": "@pixframestudios/calculator",
   "version": "1.0.1",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
