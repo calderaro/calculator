@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@calderaro'
+          scope: '@pixframeStudios'
       - run: yarn install
       - run: yarn run build
       - run: yarn publish --verbose --new-version $(echo "${MAJOR_VERSION:-0}.${MINOR_VERSION:-0}.$((GITHUB_RUN_NUMBER - MICRO_VERSION_BASE))") --no-git-tag-version

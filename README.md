@@ -1,3 +1,3 @@
-@calderaro/calculator
+@pixframeStudios/calculator
 
-![alt text](https://raw.githubusercontent.com/calderaro/calculator/main/examples/calculator.png)
+![alt text](https://raw.githubusercontent.com/pixframeStudios/calculator/main/examples/calculator.png)
