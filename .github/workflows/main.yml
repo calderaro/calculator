@@ -25,10 +25,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-          registry-url: 'https://npm.pkg.github.com'
+          #registry-url: 'https://npm.pkg.github.com'
           scope: '@pixframestudios'
       - run: yarn install
       - run: yarn run build
       - run: yarn publish --access public --verbose --new-version $(echo "${MAJOR_VERSION:-0}.${MINOR_VERSION:-0}.$((GITHUB_RUN_NUMBER - MICRO_VERSION_BASE))") --no-git-tag-version
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
