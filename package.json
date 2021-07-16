@@ -58,6 +58,5 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:pixframeStudios/calculator.git"
-  },
-  "private": "false"
+  }
 }
