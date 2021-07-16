@@ -6,6 +6,7 @@
 .prettierrc.js
 .tsconfig.json
 .vscode
+.storybook
 tsconfig.tsbuildinfo
 yarn.lock
 demo
