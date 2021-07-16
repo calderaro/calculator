@@ -1,1 +1,1 @@
-export { Calculator } from './components/Calculator';
+export * from './components/Calculator';
