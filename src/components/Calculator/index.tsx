@@ -35,6 +35,8 @@ export const Calculator: React.FC = () => {
           const hasOperation = operation.length > 0;
 
           if (e.type === 'digit') {
+            if(displayValue.includes('E')) return;
+
             if (!justOperated && hasFirst && hasOperation) {
               let nval = justChanged ? '0' : secondValue;
 
@@ -85,11 +87,11 @@ export const Calculator: React.FC = () => {
           }
 
           if (e.value === '%') {
-            const val = String(Number(firstValue as string) / 100);
-            setDisplayValue(val);
+            const val = String(Number(firstValue as string));
             setFirstValue(val);
-            //setSecondValue('0');
-            //setOperation('');
+            setSecondValue('0');
+            setDisplayValue(secondValue);
+            setOperation('%');
             return;
           }
 
@@ -110,6 +112,10 @@ export const Calculator: React.FC = () => {
           if (e.value === '=' && hasOperation) {
             let nval = '0';
 
+            if(displayValue.includes('E')) {
+              return;
+            }
+
             if (operation === 'addition') {
               nval = String(Number(firstValue as string) + Number(secondValue as string));
             } else if (operation === 'subtraction') {
@@ -118,6 +124,12 @@ export const Calculator: React.FC = () => {
               nval = String(Number(firstValue as string) * Number(secondValue as string));
             } else if (operation === 'division') {
               nval = String(Number(firstValue as string) / Number(secondValue as string));
+            } else if(operation === '%') {
+              nval = String((Number(firstValue as string) * Number(secondValue as string)) / 100);
+            }
+            if(nval.length > 9)
+            {
+              nval = nval.substring(0, 8) + 'E';
             }
 
             setFirstValue(nval);
